@@ -8,6 +8,7 @@ class User(AbstractUser):
     name = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
     bio = models.TextField(null= True, blank=True)
+    hackthon_participant = models.BooleanField(default=True, null=False)
     # avatar
 
 
