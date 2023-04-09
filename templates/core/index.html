@@ -1,12 +1,34 @@
 {% extends 'base.html' %}
+
+
 {% block title %} Home {% endblock title %}
 
 {% block content %}
-    <h1>Home page</h1>
+    <section>
+        <h3>Events</h3>
+        <div class="event-list">
+            {% for event in events %}
+                <div>
+                <a href="{{event.get_absolute_url}}">{{event.name}}</a>
+                </div>
 
-    <h3>Users</h3>
-    <p><b>Users</b> &nbsp; <b>Last login</b></p>
-    {% for user in users %}
-    <p>{{user}} &nbsp; <i>{{ user.last_login }}</i></p>
-    {% endfor %}
+            {% endfor %}
+        </div>
+    </section>
+
+    <section>
+        <h3>Users</h3>
+        <div class="users-list">
+            {% for user in users %}
+                <div>
+                {{user.name}}
+                </div>
+
+            {% endfor %}
+        </div>
+    </section>
+
+    
+    
+    
 {% endblock content %}

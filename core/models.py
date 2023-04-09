@@ -1,5 +1,6 @@
 from django.db import models
 from users.models import User
+from django.urls import reverse 
 
 
 # Create your models here.
@@ -14,6 +15,9 @@ class Event(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def get_absolute_url(self):
+        return reverse('event', args=[self.id])
     
 
 class Submission(models.Model):

@@ -14,7 +14,7 @@ class User(AbstractUser):
 
     
     USERNAME_FIELD = 'email' #makes username exempted
-    REQUIRED_FIELDS = []    #a must use when you use USERNAME_FIELD
+    REQUIRED_FIELDS = ['username']    #a must use when you use USERNAME_FIELD
 
     def __str__(self):
         return self.name
