@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %} {{event.name}} - confirmation {% endblock title %}
+
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    <a href="{% url 'event' event.id  %}">Go Back</a> <br>
+    <input type="submit" value="confirm-event" />
+    
+</form>
+
+{% endblock content %}
