@@ -21,7 +21,8 @@
         <div class="users-list">
             {% for user in users %}
                 <div>
-                {{user.name}}
+                {{user.name}} &nbsp;
+                 <a href="{% url 'user-profile' user.id %}"><i>view profile</i></a>
                 </div>
 
             {% endfor %}
