@@ -23,17 +23,40 @@ class IndexView(View):
 
 class EventView(View):
     def get(self, request, pk):
+        
         try:
             event = Event.objects.get(pk=pk)
+            user = request.user
+            if event.participants.filter(email = user.email).exists():
+                print('>>>>>>>>>>>>>>>> Yoo')
+            else:
+                messages.success(request, f"{user}, You are no longer a participant of {event}")
+                event.participants.remove(user)
         except Event.DoesNotExist:
             messages.warning(request, "event not found")
             return redirect(request.META.get("HTTP_REFERER", '/'))
             # return render(request, 'core/event.html', context)
         context = {
-            'event':event
+            'event':event,
         }
         return render(request, 'core/event.html', context)
+    
 
+    def post(self, request, pk):
+        
+       
+        event = Event.objects.get(pk=pk)
+        user = request.user
+        if event.participants.filter(email = user.email).exists():
+            messages.success(request, f"{user}, You are no longer a participant of {event}")
+            event.participants.remove(user)
+        
+        context = {
+            'event':event,
+        }
+        return render(request, 'core/event.html', context)
+    
+    
 class Confirm_Event_Registration(View):
     def get(self, request, pk):
         try:
