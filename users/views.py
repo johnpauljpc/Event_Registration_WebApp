@@ -12,3 +12,12 @@ class User_Profile(View):
             'user':user
         }
         return render(request, 'users/user_profile.html', context)
+
+
+class Account(View):
+    def get(self, request):
+        context = {}
+        
+        return render(request, 'users/account.html')
+    def post(self, request):
+        print(request.user)
