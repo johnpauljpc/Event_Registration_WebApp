@@ -5,7 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from .models import Event
-
+from .forms import submissionForm
 # Create your views here.
 class IndexView(View):
     def get(self, request):
@@ -86,3 +86,19 @@ class Confirm_Event_Registration(LoginRequiredMixin, View):
         }
 
         return render(request, 'core/event_confirmation.html', context)
+    
+def project_submission(request, pk):
+    event = Event.objects.filter(id=pk).first()
+    form = submissionForm(initial={'participant':request.user, 'event':event})
+    if request.method == 'POST':
+        
+        form =submissionForm(request.POST)
+        form.instance.event = event
+        form.instance.participant = request.user
+        if form.is_valid():
+            form.save()
+            return redirect('account')
+
+    context = {'event':event,
+               'form':form}
+    return render(request, 'core/project_submission.html', context)
