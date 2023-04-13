@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from django.http import HttpResponse
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from .models import Event
@@ -27,11 +28,7 @@ class EventView(View):
         try:
             event = Event.objects.get(pk=pk)
             user = request.user
-            if event.participants.filter(email = user.email).exists():
-                print('>>>>>>>>>>>>>>>> Yoo')
-            else:
-                messages.success(request, f"{user}, You are no longer a participant of {event}")
-                event.participants.remove(user)
+            
         except Event.DoesNotExist:
             messages.warning(request, "event not found")
             return redirect(request.META.get("HTTP_REFERER", '/'))
@@ -57,7 +54,7 @@ class EventView(View):
         return render(request, 'core/event.html', context)
     
     
-class Confirm_Event_Registration(View):
+class Confirm_Event_Registration(LoginRequiredMixin, View):
     def get(self, request, pk):
         try:
             event = Event.objects.get(pk=pk)

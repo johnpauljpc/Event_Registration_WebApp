@@ -7,6 +7,13 @@
 
 
 <h2>Hi {{user}}, you are authenticated</h2>
+<div>
+    <h4>Events you are participating</h4>
+    {% for e in user.events.all %}
+    <a href="{% url 'event' e.id %}">{{e.name}}</a><br>
+    {% endfor %}
+    
+</div>
 
 
 {% endblock content %}
