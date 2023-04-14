@@ -90,6 +90,10 @@ class Confirm_Event_Registration(LoginRequiredMixin, View):
 def project_submission(request, pk):
     event = Event.objects.filter(id=pk).first()
     form = submissionForm(initial={'participant':request.user, 'event':event})
+    if request.user not in event.participants.all():
+        messages.info(request, "you didn't register for the event, so You can't submit any project")
+        return redirect('event', event.id)
+        print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
     if request.method == 'POST':
         
         form =submissionForm(request.POST)
