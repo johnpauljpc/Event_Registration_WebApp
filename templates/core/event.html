@@ -15,7 +15,11 @@
 </form>
 {% endif %}
 
+{% if submitted %}
+<p>You have submitted a project for this event!</p>
+{% else %}
 <a href="{% url 'project-submission' event.id %}">Submit a project</a>
+{% endif %}
 
 <p>{{event.description}}</p>
 

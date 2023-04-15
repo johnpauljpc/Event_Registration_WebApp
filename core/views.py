@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.contrib.auth import get_user_model
-from .models import Event
+from .models import Event, Submission
 from .forms import submissionForm
 # Create your views here.
 class IndexView(View):
@@ -28,6 +28,8 @@ class EventView(View):
         try:
             event = Event.objects.get(pk=pk)
             user = request.user
+            submitted = Submission.objects.filter(participant = request.user, event=event).exists()
+            print('submitted>>>>>>>>>>>>>>:', submitted)
             
         except Event.DoesNotExist:
             messages.warning(request, "event not found")
@@ -35,6 +37,7 @@ class EventView(View):
             # return render(request, 'core/event.html', context)
         context = {
             'event':event,
+            'submitted':submitted
         }
         return render(request, 'core/event.html', context)
     
@@ -101,7 +104,7 @@ def project_submission(request, pk):
         form.instance.participant = request.user
         if form.is_valid():
             form.save()
-            return redirect('account')
+            return redirect('event', event.id)
 
     context = {'event':event,
                'form':form}
