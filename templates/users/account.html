@@ -15,5 +15,14 @@
     
 </div>
 
+<div>
+    <h4>Projects submitted</h4>
+    {{submissions}}
+    {% for sub in user.submissions.all %}
+    <a href="{% url 'event' sub.id %}">{{sub.event.name}}</a><br>
+    {% endfor %}
+    
+</div>
+
 
 {% endblock content %}
