@@ -6,8 +6,10 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model
 from .models import Event, Submission
 from .forms import submissionForm
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 class IndexView(View):
+    
     def get(self, request):
         users = get_user_model()
         Users = users.objects.filter(hackthon_participant=True)
@@ -90,6 +92,7 @@ class Confirm_Event_Registration(LoginRequiredMixin, View):
 
         return render(request, 'core/event_confirmation.html', context)
     
+@login_required()    
 def project_submission(request, pk):
     event = Event.objects.filter(id=pk).first()
     form = submissionForm(initial={'participant':request.user, 'event':event})
@@ -109,3 +112,25 @@ def project_submission(request, pk):
     context = {'event':event,
                'form':form}
     return render(request, 'core/project_submission.html', context)
+
+@login_required()
+def UpdateSubmission(request, pk):
+    submission = Submission.objects.get(id=pk, participant = request.user)
+    event = submission.event
+    form = submissionForm(instance=submission)
+    context = {
+        'event':event,
+        'form':form
+
+    }
+
+    if request.method=='POST':
+        form = submissionForm(request.POST, instance=submission)
+        if form.is_valid():
+            form.save()
+            messages.info(request, "submission updated successfully!")
+            return redirect('account')
+        for error in list(form.errors.values()):
+            messages.error(request, error)
+   
+    return render(request, 'core/update-project-submission.html', context)
