@@ -31,7 +31,7 @@ class EventView(View):
             event = Event.objects.get(pk=pk)
             user = request.user
             submitted = Submission.objects.filter(participant = request.user, event=event).exists()
-            print('submitted>>>>>>>>>>>>>>:', submitted)
+            print('submitted>>>>>>>>:', submitted)
             
         except Event.DoesNotExist:
             messages.warning(request, "event not found")
