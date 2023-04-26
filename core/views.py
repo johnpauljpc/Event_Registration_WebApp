@@ -92,7 +92,7 @@ class Confirm_Event_Registration(LoginRequiredMixin, View):
 
         return render(request, 'core/event_confirmation.html', context)
     
-@login_required()    
+@login_required(login_url='login')    
 def project_submission(request, pk):
     event = Event.objects.filter(id=pk).first()
     form = submissionForm(initial={'participant':request.user, 'event':event})
