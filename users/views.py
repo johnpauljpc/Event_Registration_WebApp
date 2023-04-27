@@ -5,6 +5,18 @@ from .models import User
 from core.models import Event
 
 # Create your views here.
+def loginPage(request):
+    context = {
+        'page':"login"
+    }
+    return render(request, "users/login_register.html", context)
+
+def signUpPage(request):
+    context = {
+        'page':"register"
+    }
+    return render(request, "users/login_register.html", context)
+
 class User_Profile(View):
     def get(self, request, pk):
         user = User.objects.filter(id = pk).first()

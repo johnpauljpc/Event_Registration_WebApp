@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %} Login {% endblock title %}
+
+{% block content %}
+
+{% if page == "login" %}
+<h1>Login Page</h1>
+{% elif page == "register" %}
+<h1>User Registration </h1>
+{% else %}
+<h2>how did You get here?</h2>
+{% endif %}
+
+{% endblock content %}

@@ -4,6 +4,6 @@
     <a href="{% url 'account' %}">My Account</a>
     <a href="#">Logout</a>
     {% else %}
-    <a href="#">Login</a>
+    <a href="{% url 'login' %}">Login</a>
     {% endif %}
 </nav>
