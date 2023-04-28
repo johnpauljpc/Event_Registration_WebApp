@@ -3,10 +3,15 @@ from django.http import HttpResponse
 from django.views import View
 from .models import User
 from core.models import Event
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
 # Create your views here.
+def signUpPage(request):
+    context = {
+        'page':"register"
+    }
+    return render(request, "users/login_register.html", context)
 def loginPage(request):
     
     if request.method == 'POST':
@@ -21,11 +26,11 @@ def loginPage(request):
     }    
     return render(request, "users/login_register.html", context)
 
-def signUpPage(request):
-    context = {
-        'page':"register"
-    }
-    return render(request, "users/login_register.html", context)
+def logoutView(request):
+    logout(request)
+    messages.info(request, "You have logged out!")
+    return redirect("index")
+
 
 class User_Profile(View):
     def get(self, request, pk):
