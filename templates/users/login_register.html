@@ -6,6 +6,28 @@
 
 {% if page == "login" %}
 <h1>Login Page</h1>
+
+<form action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+    <!-- <div>
+    <label for="username">User</label>
+    <input type="text" required>
+</div> -->
+
+<div>
+    <label for="email">Email</label>
+    <input type="email"  name="email" required>
+</div>
+<div>
+    <label for="password">Password</label>
+    <input type="password" name="password" required>
+</div>
+
+<div>
+    <input type="submit" value="Login">
+</div>
+</form>
+
 {% elif page == "register" %}
 <h1>User Registration </h1>
 {% else %}
