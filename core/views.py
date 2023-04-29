@@ -30,9 +30,12 @@ class EventView(View):
         try:
             event = Event.objects.get(pk=pk)
             user = request.user
-            submitted = Submission.objects.filter(participant = request.user, event=event).exists()
-            print('submitted>>>>>>>>:', submitted)
-            
+            if(user.is_authenticated):
+                
+                submitted = Submission.objects.filter(participant = request.user, event=event).exists()
+                print('submitted>>>>>>>>:', submitted)
+            else:
+                submitted = False
         except Event.DoesNotExist:
             messages.warning(request, "event not found")
             return redirect(request.META.get("HTTP_REFERER", '/'))
