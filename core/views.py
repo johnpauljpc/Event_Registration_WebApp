@@ -33,7 +33,7 @@ class EventView(View):
             if(user.is_authenticated):
                 
                 submitted = Submission.objects.filter(participant = request.user, event=event).exists()
-                print('submitted>>>>>>>>:', submitted)
+                print('submitted>>>>>>:', submitted)
             else:
                 submitted = False
         except Event.DoesNotExist:
