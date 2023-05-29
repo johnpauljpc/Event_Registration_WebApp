@@ -118,7 +118,10 @@ def project_submission(request, pk):
 
 @login_required()
 def UpdateSubmission(request, pk):
-    submission = Submission.objects.get(id=pk, participant = request.user)
+    try:
+        submission = Submission.objects.get(id=pk, participant = request.user)
+    except:
+        return HttpResponse(f'<b>Go</b> Back <script> alert("You cant be here!!")</script>')
     event = submission.event
     form = submissionForm(instance=submission)
     context = {
