@@ -5,13 +5,38 @@ from .models import User
 from core.models import Event
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-
+from .forms import SignupForm
 # Create your views here.
 def signUpPage(request):
+    # user = User.objects
+    if request.method == 'POST':
+        form = SignupForm(request.POST)
+
+        if form.is_valid():
+        # user = User.
+            user = form.save(commit=False)
+            user.save()
+            login(request, user)
+            print("***********************************")
+            print(user.name)
+        
+            print("***********************************")
+            messages.success(request, f"Successfully registered!, Welcome {user.name}!")
+            return redirect('account')
+        elif form.errors:
+            for err in list(form.errors.values()):
+                messages.error(request, err)
+
+        
+        
+    
+    form  = SignupForm()
     context = {
-        'page':"register"
+        'page':"register",
+        'form': form
     }
     return render(request, "users/login_register.html", context)
+
 def loginPage(request):
     
     if request.method == 'POST':
