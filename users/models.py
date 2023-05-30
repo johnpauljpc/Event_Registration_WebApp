@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+import uuid
 
 
 # Create your models here.
@@ -10,6 +11,7 @@ class User(AbstractUser):
     bio = models.TextField(null= True, blank=True)
     hackthon_participant = models.BooleanField(default=True, null=False)
     avatar = models.ImageField(default = 'avatars/profile.jpeg', null=True)
+    id = models.UUIDField(primary_key=True, editable=False, unique=True, default=uuid.uuid4)
 
 
     
