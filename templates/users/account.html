@@ -6,16 +6,16 @@
 {% block content %}
 
 
-<h2>Hi {{user}}, you are authenticated</h2>
-<div>
-    <h4>Events you are participating</h4>
+<h3>My Account</h3>
+<div class="section">
+    <h4>My Events</h4>
     {% for e in user.events.all %}
     <a href="{% url 'event' e.id %}">{{e.name}}</a><br>
     {% endfor %}
     
 </div>
 
-<div>
+<div class="section">
     <h4>Projects submitted</h4>
     {{submissions}}
     {% for sub in user.submissions.all %}

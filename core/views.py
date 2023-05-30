@@ -52,9 +52,11 @@ class EventView(View):
        
         event = Event.objects.get(pk=pk)
         user = request.user
-        if event.participants.filter(email = user.email).exists():
+        print('--------------------------------', event.participants.filter(email = user.email).exists())
+        if event.participants.filter(email = user.email):
             messages.success(request, f"{user}, You are no longer a participant of {event}")
             event.participants.remove(user)
+            return redirect ('event', event.id )
         
         context = {
             'event':event,

@@ -19,12 +19,13 @@
         </div>
     </section>
 
-    <section>
-        <h3>Users</h3>
-        <div class="users-list">
+    <section class="section">
+        <h4>Users</h4>
+        <div class="users-list section">
             {% for user in users %}
                 <div class="user-wrapper">
-                {{user.name}} &nbsp;
+                    <img src="{{user.avatar.url}}" class="avatar" alt="{{user.name}}">
+                <h4>{{user.name}}</h4>
                  <a href="{% url 'user-profile' user.id %}"><i>view profile</i></a>
                 </div>
 

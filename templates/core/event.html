@@ -5,31 +5,49 @@
 {% block content %}
 
 <h2>{{event.name}}</h3>
-{% if user not in event.participants.all %}
-<a href="{% url 'confirm-event' event.id %}">Register for event</a>
-{% else %}
+<div class="event-action-wrapper">
+    {% if submitted %}
+    <p class="text-success" style="align-self: center; font-weight: bold;">You have submitted a project for this event! |</p>
+    {% else %}
+    <a class= "btn btn-primary" href="{% url 'project-submission' event.id %}">Submit a project</a>
+    {% endif %}
 
-<form  method="POST">
-    {% csrf_token %}
-    <input type="submit" value="Cancel registration">
-</form>
+
+    {% if user not in event.participants.all  %}
+    <a class= "btn btn-primary" href="{% url 'confirm-event' event.id %}">Register for event</a>
+    {% elif not submitted %}
+    <form  method="POST">
+        {% csrf_token %}
+        <input class="btn btn-warning" type="submit" value="Cancel registration">
+    </form>
+    {% else %}
+    <p class="text-success" style="align-self: center; font-weight: bold;">|  You have registered for this event!</p>
+
 {% endif %}
+</div>
 
-{% if submitted %}
-<p>You have submitted a project for this event!</p>
-{% else %}
-<a href="{% url 'project-submission' event.id %}">Submit a project</a>
-{% endif %}
 
-<p>{{event.description}}</p>
+<p>{{event.description|urlize|linebreaks}}</p>
 
 <div>
     <h3>Event Participants</h3>
         <h4>Number of participants: {{event.participants.all.count}}</h4>
-    {% for p in event.participants.all %}
+    
 
-    <li>{{p}}</li>
-    {% endfor %}
+    <section class="section">
+        <h4>participants</h4>
+        <div class="users-list section">
+            {% for user in event.participants.all %}
+                <div class="user-wrapper">
+                    <img src="{{user.avatar.url}}" class="avatar" alt="{{user.name}}">
+                <h4>{{user.name}}</h4>
+                 <a href="{% url 'user-profile' user.id %}"><i>view profile</i></a>
+                </div>
+
+            {% endfor %}
+        </div>
+    </section>
+   
     
 </div>
 

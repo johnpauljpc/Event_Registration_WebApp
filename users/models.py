@@ -9,7 +9,7 @@ class User(AbstractUser):
     email = models.EmailField(unique=True)
     bio = models.TextField(null= True, blank=True)
     hackthon_participant = models.BooleanField(default=True, null=False)
-    # avatar
+    avatar = models.ImageField(default = 'avatars/profile.jpeg', null=True)
 
 
     

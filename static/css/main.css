@@ -10,16 +10,22 @@
     /* font-family: 'Poppins', sans-serif;
 font-family: 'Readex Pro', sans-serif; */
 }
+body{
+    width: 100%;
+}
+
+
 
 /* NAVBAR */
 .nav{
     /* height: 8vh; */
     width: 100%;
-    padding: 1em;
+    padding: .5em;
     border-bottom: solid 1px rgb(218, 218, 218);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     
 }
 .nav a{
@@ -27,6 +33,7 @@ font-family: 'Readex Pro', sans-serif; */
     text-decoration: none;
     font-weight: bold;
     margin: 0 1em 0 0;
+    
 }
 .main-container{
     max-width: 1200px;
@@ -81,4 +88,50 @@ input:hover{
     border: solid 2px #dadada;
     padding: 1em;
   
+}
+
+.avatar{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50px;
+}
+
+
+
+
+
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    /* color: black; */
+    background-color: rgb(204, 204, 204);
+    text-decoration: none;
+    display: block;
+    width: fit-content;
+    margin: 10px;
+}
+
+.btn-warning{
+    background-color: #f0ad4e;
+   
+}
+
+.btn-primary{
+    background-color: steelblue;
+    color: #fff !important;
+}
+
+/* EVENT PAGE */
+.event-action-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+}
+.section{
+    margin: 2em 0;
+}
+
+.text-success{
+    color: #198754;
 }
