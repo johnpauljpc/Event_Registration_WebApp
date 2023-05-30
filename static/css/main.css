@@ -1,5 +1,84 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Readex+Pro:wght@200&display=swap');
+
 *{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Readex Pro';
+    background-color: rgb(249, 250, 251);
+    /* font-family: 'Poppins', sans-serif;
+font-family: 'Readex Pro', sans-serif; */
+}
+
+/* NAVBAR */
+.nav{
+    /* height: 8vh; */
+    width: 100%;
+    padding: 1em;
+    border-bottom: solid 1px rgb(218, 218, 218);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+.nav a{
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 1em 0 0;
+}
+.main-container{
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 92vh;
+    padding: 0 1em;
+}
+
+
+
+input, textarea{
+    outline: solid 1px white;
+    background: #eeeeeeea;
+    padding: 7px;
+    border-radius:  5px ;
+    border: solid 2px #dfcbcb;
+}
+
+
+
+input:hover{
+    
+    outline: none;
+}
+
+/* EVENT */
+.event-list{
+    display: grid;
+    grid-template-columns:1fr 1fr ;
+    /* grid-template: ; */
+    gap: 2em;
+
+}
+.event-wrapper{
+    border:  solid 2px rgb(218, 218, 218);
+    padding: 1em;
+    border-radius: 5px;
+    
+}
+
+.event-wrapper a{
+    text-decoration: none;
+}
+
+.users-list{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 2em;
+}
+.user-wrapper{
+    border-radius: 5px;
+    border: solid 2px #dadada;
+    padding: 1em;
+  
 }

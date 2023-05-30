@@ -8,8 +8,11 @@
         <h3>Events</h3>
         <div class="event-list">
             {% for event in events %}
-                <div>
-                <a href="{{event.get_absolute_url}}">{{event.name}}</a>
+                <div class="event-wrapper">
+                <a href="{{event.get_absolute_url}}"><strong>{{event.name}}</strong>
+                <p>{{event.participants.all.count}} registers</p>
+                <p>Registration deadline: {{event.registration_deadline}}</p>
+            </a>
                 </div>
 
             {% endfor %}
@@ -20,7 +23,7 @@
         <h3>Users</h3>
         <div class="users-list">
             {% for user in users %}
-                <div>
+                <div class="user-wrapper">
                 {{user.name}} &nbsp;
                  <a href="{% url 'user-profile' user.id %}"><i>view profile</i></a>
                 </div>

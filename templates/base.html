@@ -10,14 +10,12 @@
 </head>
 <body>
     {% include 'partials/navbar.html' %}
-    <div>
-        {% for msg in messages %}
-        <p><b>{{msg}}</b></p>
-        {% endfor %}
-    </div>
+    <div class="main-container">
+    {% include 'partials/messages.html' %}
     {% block content %}
     
     {% endblock content %}
+    </div>
 
 </body>
 </html>

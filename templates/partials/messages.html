@@ -1,0 +1,9 @@
+{% if messages %}
+
+<div class="flash-msg">
+    {% for msg in messages %}
+    <p><b>{{msg}}</b></p>
+    {% endfor %}
+</div>
+
+{% endif %}
