@@ -28,7 +28,7 @@ class EventView(View):
     def get(self, request, pk):
         
         try:
-            event = Event.objects.get(pk=pk)
+            event = Event.objects.get(id=pk)
             user = request.user
             if(user.is_authenticated):
                 

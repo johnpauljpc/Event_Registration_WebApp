@@ -58,6 +58,10 @@ input:hover{
     
     outline: none;
 }
+input:invalid{
+    border: solid 1px crimson;
+  
+}
 
 /* EVENT */
 .event-list{
@@ -96,6 +100,7 @@ input:hover{
     object-fit: cover;
     border-radius: 50px;
 }
+
 
 
 
