@@ -5,8 +5,14 @@
 
 {% block content %}
 
+<div class="section">
+    <h1>My account</h1>
 
-<h3>My Account</h3>
+    <a href="#" class="btn btn-warning">edit</a>
+    <a href="" class="btn btn-warning">reset password</a>
+</div>
+
+
 <div class="section">
     <h4>My Events</h4>
     {% for e in user.events.all %}
