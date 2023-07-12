@@ -101,8 +101,8 @@ class Confirm_Event_Registration(LoginRequiredMixin, View):
         return render(request, 'core/event_confirmation.html', context)
     
 @login_required(login_url='login')    
-def project_submission(request, pk):
-    event = Event.objects.filter(id=pk).first()
+def project_submission(request, id):
+    event = Event.objects.filter(id=id).first()
     form = submissionForm(initial={'participant':request.user, 'event':event})
     if request.user not in event.participants.all():
         messages.info(request, "you didn't register for the event, so You can't submit any project")
