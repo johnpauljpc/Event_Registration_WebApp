@@ -44,6 +44,13 @@ def loginPage(request):
         if user is not None:
             login(request, user)
             messages.success(request, f"Welcome <b>{user}</b>!")
+
+            # for redirecting to previous page
+            if next:
+                print('---------------------------------')
+                print(next)
+                return redirect(request.POST['next'])
+
             return redirect('index')
         messages.error(request, "credentials provided is wrong!")
     context = {

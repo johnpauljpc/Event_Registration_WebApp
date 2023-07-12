@@ -14,9 +14,12 @@ class IndexView(View):
         users = get_user_model()
         Users = users.objects.filter(hackthon_participant=True)
         events = Event.objects.all()
+        count = Users.count()
         context = {
             'users':Users,
-            'events': events
+            'events': events,
+            'count': count,
+            'user_list':Users[:20]
         }
         return render(request, 'core/index.html', context)
     

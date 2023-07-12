@@ -8,19 +8,19 @@
         <h3>Events</h3>
         <div class="event-list">
             {% for event in events %}
-                <div class="event-wrapper">
-                <a href="{{event.get_absolute_url}}"><strong>{{event.name}}</strong>
-                <p>{{event.participants.all.count}} registers</p>
-                <p>Registration deadline: {{event.registration_deadline}}</p>
-            </a>
-                </div>
-
+                <a href="{{event.get_absolute_url}}">
+                    <div class="event-wrapper">
+                        <p>{{event.name}}
+                        <p>{{event.participants.all.count}} registers</p>
+                        <p>Registration deadline: {{event.registration_deadline}}</p>
+                    </div>
+                </a>
             {% endfor %}
         </div>
     </section>
 
     <section class="section">
-        <h4>Users</h4>
+        <h3>Users:{{count}}</h3>
         <div class="users-list section">
             {% for user in users %}
                 <div class="user-wrapper">

@@ -19,6 +19,11 @@
     <input type="password" name="password" required>
 </div>
 
+{% if request.GET.next %}
+<!-- To redirect to previous page after login -->
+<input type="hidden" value="{{request.GET.next}}" name="next">
+{% endif %}
+
 <div>
     <input type="submit" value="Login">
 </div>

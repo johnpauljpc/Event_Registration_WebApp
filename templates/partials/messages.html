@@ -2,7 +2,7 @@
 
 <div class="flash-msg">
     {% for msg in messages %}
-    <p><b>{{msg}}</b></p>
+    <p>{{msg|safe}}</p>
     {% endfor %}
 </div>
 
