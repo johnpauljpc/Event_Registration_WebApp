@@ -116,6 +116,9 @@ def project_submission(request, id):
         if form.is_valid():
             form.save()
             return redirect('event', event.id)
+        elif form.errors:
+            for err in list(form.errors.values()):
+                messages.error(request, err)
 
     context = {'event':event,
                'form':form}
