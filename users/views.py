@@ -80,4 +80,4 @@ class Account(View):
         
         return render(request, 'users/account.html', context)
     def post(self, request):
-        print(request.user)
+        pass
