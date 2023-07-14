@@ -124,12 +124,14 @@ def project_submission(request, id):
                'form':form}
     return render(request, 'core/project_submission.html', context)
 
-@login_required()
-def UpdateSubmission(request, pk):
+# @login_required()
+def UpdateSubmission(request, id):
     try:
-        submission = Submission.objects.get(id=pk, participant = request.user)
+        submission = Submission.objects.get(id=id, participant = request.user)
     except:
-        return HttpResponse(f'<b>Go</b> Back <script> alert("You cant be here!!")</script>')
+        # return HttpResponse(f'<b><script> alert("You cant be here!!")</script>')
+        messages.info(request, "You are not authorized for this operation :)")
+        return redirect('/')
     event = submission.event
     form = submissionForm(instance=submission)
     context = {
