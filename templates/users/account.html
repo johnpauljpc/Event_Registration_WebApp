@@ -17,6 +17,9 @@
     <h4>My Events</h4>
     {% for e in user.events.all %}
     <a href="{% url 'event' e.id %}">{{e.name}}</a><br>
+
+    {% empty %}
+   <p>You have not registered for any event!</p>
     {% endfor %}
     
 </div>
@@ -26,6 +29,9 @@
     {{submissions}}
     {% for sub in user.submissions.all %}
     <a href="{% url 'update-submission' sub.id %}">{{sub.event.name}}</a><br>
+
+    {% empty %}
+    <p>You haven't made any submission yet!</p>
     {% endfor %}
     
 </div>
