@@ -5,7 +5,7 @@ from .models import User
 from core.models import Event
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import SignupForm
+from .forms import SignupForm, EditAccountForm
 # Create your views here.
 def signUpPage(request):
     # user = User.objects
@@ -81,3 +81,22 @@ class Account(View):
         return render(request, 'users/account.html', context)
     def post(self, request):
         pass
+
+
+class EditAccount(View):
+    def get(self, request):
+        form = EditAccountForm(instance=request.user)
+        context = {'form':form}
+        
+        return render(request, 'users/user-form.html', context)
+    def post(self, request):
+        form = EditAccountForm(request.POST, request.FILES,instance = request.user)
+        context = {
+            'form':form
+        }
+        if form.is_valid():
+            form.save()
+            messages.success(request, "changes saved")
+            return redirect('account')
+        
+        return render(request, 'users/user-form.html', context)

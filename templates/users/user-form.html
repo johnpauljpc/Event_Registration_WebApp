@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %} Edit Account {% endblock title %}
+
+{% block content %}
+<h2>Edit Account</h2>
+    <div>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            {% for field in form %}
+                <div class="form-field-wrapper">
+                    <label for="{{field.id_for_label}}">{{field.label}}</label>
+                    {{field}}
+
+                </div>
+
+            {% endfor %}
+            <div class="form-field-wrapper"></div>
+                <input type="submit" class="btn btn-primary" value="Update">
+        </form>
+    </div>
+{% endblock content %}
