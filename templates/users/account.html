@@ -8,6 +8,10 @@
 <div class="section">
     <h1>My account</h1>
 
+    {% if user.avatar %}
+        <img src="{{user.avatar.url}}" alt="">
+
+    {% endif %}
     <a href="{% url 'edit-account' %}" class="btn btn-warning">edit</a>
     <a href="#" class="btn btn-warning">reset password</a>
 </div>

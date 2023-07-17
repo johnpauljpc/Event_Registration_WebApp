@@ -11,9 +11,12 @@ from django.contrib.auth.decorators import login_required
 class IndexView(View):
     
     def get(self, request):
-        limit = int(request.GET.get('limit')) 
-        if limit is None:
-            limit = 20
+        
+        try:
+            limit = int(request.GET.get('limit'))
+        except:
+            limit = 20 
+        
 
 
         print("-----------------------------")
