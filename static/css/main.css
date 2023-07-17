@@ -98,7 +98,15 @@ input:invalid{
     width: 50px;
     height: 50px;
     object-fit: cover;
-    border-radius: 50px;
+    border-radius: 50%;
+}
+
+.avatar-lg{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: #f0ad4e 1px solid;
 }
 
 

@@ -46,12 +46,11 @@ def loginPage(request):
             messages.success(request, f"Welcome <b>{user}</b>!")
 
             # for redirecting to previous page
-            if next:
-                print('---------------------------------')
-                print(next)
+            if 'next' in request.POST:
                 return redirect(request.POST['next'])
+            else:
 
-            return redirect('index')
+                return redirect('index')
         messages.error(request, "credentials provided is wrong!")
     context = {
         'page':"login"

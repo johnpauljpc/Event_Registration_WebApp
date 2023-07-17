@@ -9,7 +9,7 @@
     <h1>My account</h1>
 
     {% if user.avatar %}
-        <img src="{{user.avatar.url}}" alt="">
+        <img class="avatar-lg" src="{{user.avatar.url}}" alt="">
 
     {% endif %}
     <a href="{% url 'edit-account' %}" class="btn btn-warning">edit</a>
