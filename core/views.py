@@ -11,6 +11,13 @@ from django.contrib.auth.decorators import login_required
 class IndexView(View):
     
     def get(self, request):
+        limit = int(request.GET.get('limit')) 
+        if limit is None:
+            limit = 20
+
+
+        print("-----------------------------")
+        print(limit)
         users = get_user_model()
         Users = users.objects.filter(hackthon_participant=True)
         events = Event.objects.all()
@@ -19,7 +26,7 @@ class IndexView(View):
             'users':Users,
             'events': events,
             'count': count,
-            'user_list':Users[:20]
+            'user_list':Users[0:limit]
         }
         return render(request, 'core/index.html', context)
     

@@ -22,7 +22,7 @@
     <section class="section">
         <h3>Users:{{count}}</h3>
         <div class="users-list section">
-            {% for user in users %}
+            {% for user in user_list %}
                 <div class="user-wrapper">
                     <img src="{{user.avatar.url}}" class="avatar" alt="{{user.name}}">
                 <h4>{{user.name}}</h4>
