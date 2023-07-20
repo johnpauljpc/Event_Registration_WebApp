@@ -7,7 +7,13 @@ User = get_user_model()
 class SignupForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ['name', 'email', 'bio', 'password1', 'password2',  'hackthon_participant']
+        fields = ['name', 'email', 'avatar', 'bio', 'password1', 'password2',  'hackthon_participant']
+
+        # widget ={
+        #     ''
+        # }
+        # widgets = {
+		# 	'name':forms.TextInput(attrs={ 'class':'form-control ', 'id':'name', }),
 
 class EditAccountForm(ModelForm):
     class Meta:
