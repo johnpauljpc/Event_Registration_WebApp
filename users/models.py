@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 import uuid
+from PIL import Image
 
 
 # Create your models here.
@@ -17,6 +18,17 @@ class User(AbstractUser):
     
     USERNAME_FIELD = 'email' #makes username exempted
     REQUIRED_FIELDS = ['username']    #a must use when you use USERNAME_FIELD
+
+    # reduces images
+    def save(self, *args, **kwargs):
+        super(User, self).save(*args, **kwargs)
+        if self.avatar:
+            img = Image.open(self.avatar.path)
+            
+            if img.height > 300 or img.width > 300:
+                output_size = (300, 300)
+                img.thumbnail(output_size)
+                img.save(self.avatar.path)
 
     def __str__(self):
         return self.name

@@ -10,7 +10,7 @@ from .forms import SignupForm, EditAccountForm
 def signUpPage(request):
     # user = User.objects
     if request.method == 'POST':
-        form = SignupForm(request.POST)
+        form = SignupForm(request.POST, request.FILES)
 
         if form.is_valid():
         # user = User.
