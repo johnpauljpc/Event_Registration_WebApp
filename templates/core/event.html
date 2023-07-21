@@ -3,7 +3,8 @@
 {% block title %} {{event.name}} {% endblock title %}
 
 {% block content %}
-
+{% load social_share %}
+	{% post_to_facebook object_or_url "<p style='color: green;'>Share</p>" %}
 <h2>{{event.name}}</h3>
 <div class="event-action-wrapper">
     {% if submitted %}
