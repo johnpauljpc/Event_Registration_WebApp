@@ -5,6 +5,7 @@
 {% block content %}
 {% load social_share %}
 	{% post_to_facebook object_or_url "<p style='color: green;'>Share</p>" %}
+    {% copy_to_clipboard object_or_url  "<p style='color: #804d00;'>copy</p>" %}
 <h2>{{event.name}}</h3>
 <div class="event-action-wrapper">
     {% if submitted %}
