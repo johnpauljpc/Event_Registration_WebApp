@@ -12,7 +12,7 @@ class User(AbstractUser):
     email = models.EmailField(unique=True)
     bio = models.TextField(null= True, blank=True)
     hackthon_participant = models.BooleanField(default=True, null=False)
-    avatar = ResizedImageField(size = [300, 300] ,default = 'avatars/profile.jpeg', null=True)
+    avatar = ResizedImageField(size = [300, 300] ,default = 'avatars/profile.jpeg', upload_to = "avatars/")
     id = models.UUIDField(primary_key=True, editable=False, unique=True, default=uuid.uuid4)
 
 
