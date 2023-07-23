@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 import uuid
 from PIL import Image
+from django_resized import ResizedImageField
 
 
 # Create your models here.
@@ -11,7 +12,7 @@ class User(AbstractUser):
     email = models.EmailField(unique=True)
     bio = models.TextField(null= True, blank=True)
     hackthon_participant = models.BooleanField(default=True, null=False)
-    avatar = models.ImageField(default = 'avatars/profile.jpeg', null=True)
+    avatar = ResizedImageField(size = [200, 200] ,default = 'avatars/profile.jpeg', null=True)
     id = models.UUIDField(primary_key=True, editable=False, unique=True, default=uuid.uuid4)
 
 
@@ -20,15 +21,15 @@ class User(AbstractUser):
     REQUIRED_FIELDS = ['username']    #a must use when you use USERNAME_FIELD
 
     # reduces images
-    def save(self, *args, **kwargs):
-        super(User, self).save(*args, **kwargs)
-        if self.avatar:
-            img = Image.open(self.avatar.path)
+    # def save(self, *args, **kwargs):
+    #     super(User, self).save(*args, **kwargs)
+    #     if self.avatar:
+    #         img = Image.open(self.avatar.path)
             
-            if img.height > 300 or img.width > 300:
-                output_size = (300, 300)
-                img.thumbnail(output_size)
-                img.save(self.avatar.path)
+    #         if img.height > 300 or img.width > 300:
+    #             output_size = (300, 300)
+    #             img.thumbnail(output_size)
+    #             img.save(self.avatar.path)
 
     def __str__(self):
         return self.name

@@ -59,10 +59,10 @@ input:hover{
     
     outline: none;
 }
-input:invalid{
-    border: solid 1px crimson;
+/* input:invalid{
+    border: solid 1px crimson; 
   
-}
+} */
 
 /* EVENT */
 .event-list{
