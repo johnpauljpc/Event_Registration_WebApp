@@ -21,15 +21,15 @@ class User(AbstractUser):
     REQUIRED_FIELDS = ['username']    #a must use when you use USERNAME_FIELD
 
     # reduces images
-    def save(self, *args, **kwargs):
-        super(User, self).save(*args, **kwargs)
-        if self.avatar:
-            img = Image.open(self.avatar.path)
+    # def save(self, *args, **kwargs):
+    #     super(User, self).save(*args, **kwargs)
+    #     if self.avatar:
+    #         img = Image.open(self.avatar.path)
             
-            if img.height > 300 or img.width > 300:
-                output_size = (300, 300)
-                img.thumbnail(output_size)
-                img.save(self.avatar.path)
+    #         if img.height > 300 or img.width > 300:
+    #             output_size = (300, 300)
+    #             img.thumbnail(output_size)
+    #             img.save(self.avatar.path)
 
     def __str__(self):
         return self.name
