@@ -156,3 +156,8 @@ input:hover{
 .account-options{
     display: flex;
 }
+
+/* OTHERS */
+.errorlist{
+    color: red;
+}

@@ -5,6 +5,7 @@ from .models import User
 from core.models import Event
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from .forms import SignupForm, EditAccountForm
 # Create your views here.
@@ -74,7 +75,7 @@ class User_Profile(View):
         return render(request, 'users/user_profile.html', context)
 
 
-class Account(View):
+class Account(LoginRequiredMixin,View):
     def get(self, request):
         context = {}
         
@@ -83,7 +84,7 @@ class Account(View):
         pass
 
 
-class EditAccount(View):
+class EditAccount(LoginRequiredMixin, View):
     def get(self, request):
         form = EditAccountForm(instance=request.user)
         context = {'form':form}
@@ -102,34 +103,11 @@ class EditAccount(View):
         return render(request, 'users/user-form.html', context)
     
 
-class ChangePassword(View):
+class ChangePassword(LoginRequiredMixin,View):
     def get(self, request, id):
-        form = PasswordChangeForm(user=request.user.id)
         
-        context = {
-            'form':form
-        }
+     
 
-        return render(request, "users/change-password.html", context)
+        return render(request, "users/change-password.html")
     def post(self, request, id):
-        form = PasswordChangeForm(request.POST )
-        
-        context = {
-            'form':form
-        }
-        if form.is_valid():
-            form.save()
-            messages.success(request, "password changed successfully!")
-            return redirect("my-account")
-        from django.contrib.auth.views import PasswordChangeView  
-        print("*******************")
-        # for error in list(form.errors.values()):
-        for error in list(form.errors.values()):
-            print("Error>>: ", error)
-            messages.error(request, error, "something went worng!!")
-                
-
-            
-            
-        
-        return render(request, "users/change-password.html", context)
+       return render(request, "users/change-password.html")
