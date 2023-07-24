@@ -12,8 +12,11 @@
         <img class="avatar-lg" src="{{user.avatar.url}}" alt="">
 
     {% endif %}
-    <a href="{% url 'edit-account' %}" class="btn btn-warning">edit</a>
-    <a href="#" class="btn btn-warning">reset password</a>
+    <div class="account-options">
+        <a href="{% url 'edit-account' %}" class="btn btn-warning">edit</a>
+        <a href="{% url 'change-password' user.id %}" class="btn btn-warning">reset password</a>
+        <a href="{% url 'user-profile' request.user.id %}" class="btn btn-warning">view profile</a>
+    </div>
 </div>
 
 
