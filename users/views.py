@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views import View
+from django.contrib.auth.hashers import make_password
 from .models import User
 from core.models import Event
 from django.contrib.auth import authenticate, login, logout
@@ -105,9 +106,25 @@ class EditAccount(LoginRequiredMixin, View):
 
 class ChangePassword(LoginRequiredMixin,View):
     def get(self, request, id):
-        
-     
+       
 
         return render(request, "users/change-password.html")
+    
     def post(self, request, id):
-       return render(request, "users/change-password.html")
+       password1 = request.POST['password1']
+       password2 = request.POST['password2']
+
+       user = request.user
+
+       if password1 == password2:
+           if len(password1) < 8:
+               messages.error(request, "length of password must be upto 8", {'data':request.POST})
+               return render(request, "users/change-password.html")
+           password = make_password(password1)
+           user.password = password
+           user.save()
+           messages.success(request, "password changed successfully!")
+           return redirect("account")
+
+       messages.error(request, "password does not match")
+       return render(request, "users/change-password.html", {'data':request.POST})
