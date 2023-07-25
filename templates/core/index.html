@@ -21,6 +21,10 @@
 
     <section class="section">
         <h3>Users:{{count}}</h3>
+        <form action="" method="get">
+            <input type="number" name="limit" placeholder="enter limit and hit enter" id="">
+            
+        </form>
         <div class="users-list section">
             {% for user in user_list %}
                 <div class="user-wrapper">
