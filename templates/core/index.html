@@ -5,6 +5,8 @@
 
 {% block content %}
     <section>
+
+      
         <h3>Events</h3>
         <div class="event-list">
             {% for event in events %}
@@ -25,8 +27,12 @@
             <input type="number" name="limit" placeholder="enter limit and hit enter" id="">
             
         </form>
+        <div>
+            <em style="color: grey;">Showing page {{page_obj.number}} of {{ page_obj.paginator.num_pages }}</em>
+    </div>
         <div class="users-list section">
-            {% for user in user_list %}
+            
+            {% for user in page_obj %}
                 <div class="user-wrapper">
                     <img src="{{user.avatar.url}}" class="avatar" alt="{{user.name}}">
                 <h4>{{user.name}}</h4>
@@ -35,6 +41,29 @@
 
             {% endfor %}
         </div>
+        
+        
+        <!-- PAGINATION -->
+
+        <nav class="pagination-container">
+           
+            
+                {% if page_obj.has_previous %}
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
+                {% endif %}
+
+                {% for page in pages %}
+                <a class="page-link {% if page_obj.number == page %} active-page {% endif %} " href="?page={{page}}">{{page}}</a>
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+                
+                {% endif %}
+          
+          
+               
+          </nav>
     </section>
 
     

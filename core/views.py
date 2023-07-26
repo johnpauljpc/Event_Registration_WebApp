@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.http import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.paginator import Paginator
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from .models import Event, Submission
@@ -9,27 +10,34 @@ from .forms import submissionForm
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 class IndexView(View):
-    
     def get(self, request):
         
         try:
             limit = int(request.GET.get('limit'))
         except:
-            limit = 20 
-        
-
-
+            limit = 4 
         print("-----------------------------")
         print(limit)
+        
         users = get_user_model()
         Users = users.objects.filter(hackthon_participant=True)
         events = Event.objects.all()
         count = Users.count()
+
+        paginator = Paginator(Users, limit)
+        page_number = request.GET.get('page')
+        page_obj = Paginator.get_page(paginator, page_number)
+        pages = list(range(1, (paginator.num_pages + 1)))
+
         context = {
             'users':Users,
             'events': events,
             'count': count,
-            'user_list':Users[0:limit]
+            'user_list':Users[0:limit],
+            'page_obj':page_obj,
+            'paginator':paginator,
+            'page_number':page_number,
+            'pages':pages
         }
         return render(request, 'core/index.html', context)
     
