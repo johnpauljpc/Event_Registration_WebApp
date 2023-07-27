@@ -12,6 +12,7 @@ from .forms import SignupForm, EditAccountForm
 # Create your views here.
 def signUpPage(request):
     # user = User.objects
+    form  = SignupForm()
     if request.method == 'POST':
         form = SignupForm(request.POST, request.FILES)
 
@@ -33,7 +34,7 @@ def signUpPage(request):
         
         
     
-    form  = SignupForm()
+    
     context = {
         'page':"register",
         'form': form

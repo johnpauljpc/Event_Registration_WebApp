@@ -21,7 +21,15 @@ a{
 }
 
 
+.field {
+    display: inline;
+}
 
+.error-indicator input{
+    border: none;
+    outline: 1px solid red;
+
+}
 
 /* NAVBAR */
 .nav{

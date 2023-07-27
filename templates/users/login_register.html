@@ -35,32 +35,22 @@
 <h1>User Registration </h1>
 <form action="" method="post" enctype="multipart/form-data">
     {%csrf_token%}
+  
+    {% for field in form %}
     
-   
-    <div class>
-        <label for="id_name">Name: {{form.name}}</label>
-    </div>
-    <div>
-        <label for="id_email">Email: {{form.email}}</label>
-       
-    </div>
-    <div>
-        <label for="id_avatar">Avatar: {{form.avatar}}</label>
-    </div>
+
+  <div class="form-field">
+    
+    <!-- changes the outline of the input field when there's error -->
+    {{field.label_tag}}  <p class="field {% if field.errors %} error-indicator {% endif %}">{{field}}</p>
+    <p class="errorlist"> {{field.errors}}
+  </div>
+    {% endfor %}
 
     <div>
-        <label for="id_bio">Bio <br>{{form.bio}}</label>
+        
     </div>
-
-    <div>
-        <label for="id_password1">Password {{form.password1}}</label>
-        {{form.password1.help_text}}
-        <label for="id_password2">Confirm Password {{form.password2}}</label>
-    </div>
-    <div>
-        <label for="id_hackthon_participant">hackthon participant {{form.hackthon_participant}}</label>
-    </div>
-
+    
     <button type="submit">Sign Up</button>
 </form>
 
