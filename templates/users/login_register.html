@@ -43,7 +43,10 @@
     
     <!-- changes the outline of the input field when there's error -->
     {{field.label_tag}}  <p class="field {% if field.errors %} error-indicator {% endif %}">{{field}}</p>
-    <p class="errorlist"> {{field.errors}}
+    
+    {% for error in field.errors %}
+    <p class="errorlist"> {{error}}</p>
+    {% endfor %}
   </div>
     {% endfor %}
 
