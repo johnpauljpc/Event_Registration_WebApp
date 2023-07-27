@@ -4,6 +4,7 @@
 
 {% block content %}
 
+<div class="login-register-container">
 {% if page == "login" %}
 <h1>Login Page</h1>
 
@@ -36,7 +37,7 @@
     {%csrf_token%}
     
    
-    <div>
+    <div class>
         <label for="id_name">Name: {{form.name}}</label>
     </div>
     <div>
@@ -62,6 +63,8 @@
 
     <button type="submit">Sign Up</button>
 </form>
+
+</div>
 {% else %}
 <h2>how did You get here?</h2>
 {% endif %}
