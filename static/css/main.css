@@ -31,6 +31,21 @@ a{
 
 }
 
+/* LOGIN and REGISTER FORM */
+.login-register-container{
+    
+   
+    max-width: 600px;
+    margin: auto;
+    margin-top: 15px;
+    /* border: solid 1px yellowgreen ; */
+    
+    border:1px solid #dadada;
+      padding: 25px 30px;
+      border-radius: 5px
+}
+
+
 /* NAVBAR */
 .nav{
     /* height: 8vh; */
@@ -193,3 +208,4 @@ input:hover{
 .errorlist{
     color: red;
 }
+
