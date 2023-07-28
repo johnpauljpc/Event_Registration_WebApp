@@ -44,6 +44,7 @@ class IndexView(View):
     def post(self, request):
         return HttpResponse("this is a post request")
     
+from datetime import datetime
 
 class EventView(View):
     def get(self, request, pk):
@@ -51,6 +52,12 @@ class EventView(View):
         try:
             event = Event.objects.get(id=pk)
             user = request.user
+            print("date: ", event.registration_deadline)
+            deadline = event.registration_deadline.timestamp()
+            now = datetime.now().timestamp()
+            passed_deadline = (deadline < now )
+            
+            
             if(user.is_authenticated):
                 
                 submitted = Submission.objects.filter(participant = request.user, event=event).exists()
@@ -63,7 +70,8 @@ class EventView(View):
             # return render(request, 'core/event.html', context)
         context = {
             'event':event,
-            'submitted':submitted
+            'submitted':submitted,
+            'deadline_passed':passed_deadline
         }
         return render(request, 'core/event.html', context)
     
