@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
 from django.contrib import messages
@@ -95,8 +95,15 @@ class EventView(View):
     
 class Confirm_Event_Registration(LoginRequiredMixin, View):
     def get(self, request, pk):
+        
         try:
             event = Event.objects.get(pk=pk)
+            deadline = event.registration_deadline.timestamp()
+            now = datetime.now().timestamp()
+            passed_deadline = (deadline < now )
+            if passed_deadline:
+                messages.info(request, "event registration is already closed")
+                return redirect('/')
         except Event.DoesNotExist:
             return HttpResponse("404, not found!")
         context = {
