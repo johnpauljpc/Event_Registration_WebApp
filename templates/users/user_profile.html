@@ -6,9 +6,46 @@
 {% block content %}
 <div class="section">
     <img src="{{user.avatar.url}}" alt="" class="avatar-lg">
+    <h2>{{user.name}} Profile</h2>
 </div>
-<h2>{{user.name}} Profile</h2>
-<p>email: {{user.email}}</p>
-<p>bio: {{user.bio}}</p>
+
+<!-- ------------------------   SOCIAL LINKS ----------------------- -->
+{% if user.twitter%}
+<div class="section">
+    <a href="{{user.twitter}}" target="_blank">Twitter</a>
+</div>
+{% endif %}
+
+{% if user.facebook%}
+<div class="section">
+    <a href="{{user.facebook}}" target="_blank">Facebook</a>
+</div>
+{% endif %}
+
+{% if user.linkedin %}
+<div class="section">
+    <a href="{{user.linkedin}}" target="_blank">Linkedin</a>
+</div>
+{% endif %}
+
+{% if user.github %}
+<div class="section">
+    <a href="{{user.github}}" target="_blank">Github</a>
+</div>
+{% endif %}
+
+{% if user.website %}
+<div class="section">
+    <a href="{{user.website}}" target="_blank">Website</a>
+</div>
+{% endif %}
+
+<!-- ------------- End of Users SOCIAL LINKS ---------------------------->
+{% if user.bio %}
+<div class="section">
+    <p>{{user.bio}}</p>
+
+</div>
+{% endif %}
 
 {% endblock content %}

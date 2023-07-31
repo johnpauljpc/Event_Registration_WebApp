@@ -78,6 +78,7 @@ input, textarea{
     outline: solid 1px white;
     background: #eeeeeeea;
     padding: 7px;
+    min-width: 300px;
     border-radius:  5px ;
     border: solid 2px #dfcbcb;
 }
@@ -96,7 +97,7 @@ input:hover{
 /* EVENT */
 .event-list{
     display: grid;
-    grid-template-columns:1fr 1fr ;
+    grid-template-columns:1fr 1fr 1fr;
     /* grid-template: ; */
     gap: 2em;
 
@@ -114,7 +115,7 @@ input:hover{
 
 .users-list{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 2em;
 }
 .user-wrapper{
@@ -209,3 +210,30 @@ input:hover{
     color: red;
 }
 
+
+/* MEDIA QUERIES */
+
+@media (max-width:1200px) {
+    .main-container{
+        width: 100%;
+    }
+}
+
+@media (max-width:800px) {
+    .event-list{
+        grid-template-columns: 1fr 1fr;
+    }
+    .users-list{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+
+@media (max-width:600px) {
+    .event-list{
+        grid-template-columns: 1fr;
+    }
+    .users-list{
+        grid-template-columns: 1fr 1fr;
+    }
+}

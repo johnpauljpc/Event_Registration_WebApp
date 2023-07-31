@@ -15,6 +15,13 @@ class User(AbstractUser):
     avatar = ResizedImageField(size = [300, 300] ,default = 'avatars/profile.jpeg', upload_to = "avatars/")
     id = models.UUIDField(primary_key=True, editable=False, unique=True, default=uuid.uuid4)
 
+    #Social handles Fields
+    twitter = models.URLField(max_length=500, null=True, blank=True)
+    facebook = models.URLField(max_length=500, null=True, blank=True)
+    linkedin = models.URLField(max_length=500, null=True, blank=True)
+    github = models.URLField(max_length=500, null=True, blank=True)
+    website = models.URLField(max_length=500, null=True, blank=True)
+
 
     
     USERNAME_FIELD = 'email' #makes username exempted

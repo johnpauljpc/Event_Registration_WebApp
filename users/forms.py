@@ -7,7 +7,7 @@ User = get_user_model()
 class SignupForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ['name', 'email', 'avatar', 'bio', 'password1', 'password2',  'hackthon_participant']
+        fields = ['name','email', 'avatar', 'bio']
 
         # widget ={
         #     ''
@@ -18,4 +18,4 @@ class SignupForm(UserCreationForm):
 class EditAccountForm(ModelForm):
     class Meta:
         model = User
-        fields = ['name', 'email', 'username', 'avatar', 'bio']
+        fields = ['name', 'email', 'username', 'avatar', 'bio', 'twitter', 'facebook', 'linkedin', 'github', 'website']
